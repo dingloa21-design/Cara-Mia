@@ -1,13 +1,13 @@
 const morphText = document.getElementById('morphText');
-const bubbleLayer = document.querySelector('.bubble-layer');
-const messages = ['SALMA', 'SALMA', 'CARA MIA', 'CARA MIA'];
+const petalLayer = document.querySelector('.bubble-layer');
+const messages = ['SALMA', 'CARA MIA'];
 let messageIndex = 0;
 let letterIndex = 0;
 let morphDirection = 1;
 let lastTime = 0;
 
 function animateText(timestamp) {
-  if (timestamp - lastTime > 120) {
+  if (timestamp - lastTime > 240) {
     const current = messages[messageIndex];
     const next = messages[(messageIndex + 1) % messages.length];
     const letters = morphDirection > 0 ? current : next;
@@ -26,36 +26,36 @@ function animateText(timestamp) {
   requestAnimationFrame(animateText);
 }
 
-function createBubble() {
-  const bubble = document.createElement('div');
-  const sizeClass = ['bubble--small', 'bubble--medium', 'bubble--large'][Math.floor(Math.random() * 3)];
-  bubble.className = `bubble ${sizeClass}`;
+function createPetal() {
+  const petal = document.createElement('div');
+  const sizeClass = ['petal--small', 'petal--medium', 'petal--large'][Math.floor(Math.random() * 3)];
+  petal.className = `petal ${sizeClass}`;
 
   const startLeft = Math.random() * 110;
   const duration = 10 + Math.random() * 10;
   const delay = -Math.random() * 8;
 
-  bubble.style.left = `${startLeft}%`;
-  bubble.style.bottom = `${-80 - Math.random() * 40}px`;
-  bubble.style.animationDuration = `${duration}s`;
-  bubble.style.animationDelay = `${delay}s`;
-  bubble.style.opacity = 0.7 + Math.random() * 0.2;
+  petal.style.left = `${startLeft}%`;
+  petal.style.bottom = `${-80 - Math.random() * 40}px`;
+  petal.style.animationDuration = `${duration}s`;
+  petal.style.animationDelay = `${delay}s`;
+  petal.style.opacity = 0.7 + Math.random() * 0.2;
 
-  bubbleLayer.appendChild(bubble);
+  petalLayer.appendChild(petal);
 
-  setTimeout(() => bubble.remove(), (duration + 2) * 1000);
+  setTimeout(() => petal.remove(), (duration + 2) * 1000);
 }
 
-function spawnBubbles() {
-  createBubble();
-  createBubble();
-  createBubble();
-  setTimeout(spawnBubbles, 1200);
+function spawnPetals() {
+  createPetal();
+  createPetal();
+  createPetal();
+  setTimeout(spawnPetals, 1200);
 }
 
 function init() {
   requestAnimationFrame(animateText);
-  spawnBubbles();
+  spawnPetals();
 }
 
 init();

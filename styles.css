@@ -41,22 +41,24 @@ body {
 
 .hero-card {
   width: 100%;
-  max-width: 900px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 2px solid rgba(255, 255, 255, 0.88);
-  border-radius: 48px;
-  padding: 3rem;
-  box-shadow: 0 25px 60px var(--shadow);
+  max-width: 1000px;
+  min-height: 520px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 56px;
+  padding: 3.5rem 4rem;
+  box-shadow: 0 25px 70px var(--shadow);
   backdrop-filter: blur(18px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3.5rem;
   align-items: center;
 }
 
 .hero-text {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
+  max-width: 460px;
 }
 
 .intro {
@@ -67,7 +69,7 @@ body {
 }
 
 h1 {
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(3.4rem, 7vw, 6.8rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
   margin: 0;
@@ -159,29 +161,30 @@ h1 {
   inset: 0;
 }
 
-.bubble {
+.petal {
   position: absolute;
-  border-radius: 50%;
-  opacity: 0.88;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.75), rgba(255, 183, 212, 0.3));
-  box-shadow: 0 16px 50px rgba(255, 142, 189, 0.25);
-  animation: floatUp linear infinite;
+  border-radius: 70% 30% 60% 40%;
+  opacity: 0.9;
+  background: radial-gradient(circle at 30% 30%, #fff7fb 0%, #ffd7ea 35%, #ff8dbd 70%, #ff5e9f 100%);
+  box-shadow: 0 16px 36px rgba(255, 142, 189, 0.22);
+  animation: driftRose linear infinite;
+  filter: drop-shadow(0 4px 8px rgba(255, 96, 159, 0.15));
 }
 
-.bubble--small { width: 18px; height: 18px; }
-.bubble--medium { width: 36px; height: 36px; }
-.bubble--large { width: 62px; height: 62px; }
+.petal--small { width: 18px; height: 18px; }
+.petal--medium { width: 34px; height: 34px; }
+.petal--large { width: 58px; height: 58px; }
 
-@keyframes floatUp {
+@keyframes driftRose {
   from {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) rotate(0deg) scale(1);
     opacity: 0.8;
   }
   50% {
     opacity: 1;
   }
   to {
-    transform: translateY(-110vh) scale(1.2);
+    transform: translateY(-110vh) rotate(360deg) scale(1.15);
     opacity: 0;
   }
 }
