@@ -13,3 +13,4 @@ A cute, plastic-pink animated landing page built to celebrate Salma with a flowi
 1. Push this folder to a GitHub repository named `Cara Mia`.
 2. Enable GitHub Pages from repository settings.
 3. Use the generated link to share with Salma.
+# Cara-Mia
