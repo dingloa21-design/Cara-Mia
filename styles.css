@@ -106,6 +106,52 @@ h1 {
   place-items: center;
 }
 
+.card-media {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+}
+
+.image-card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+  will-change: opacity, transform;
+}
+
+.image-card img {
+  width: 88%;
+  height: auto;
+  border-radius: 28px;
+  object-fit: cover;
+  box-shadow: 0 30px 70px rgba(79, 13, 55, 0.18);
+  border: 8px solid rgba(255,255,255,0.88);
+}
+
+.bouquet {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+}
+
+.card-media .visible {
+  opacity: 1 !important;
+  transform: scale(1);
+}
+
+.card-media .hidden {
+  opacity: 0 !important;
+  transform: scale(0.98);
+}
+
 .flower {
   position: absolute;
   width: 78px;

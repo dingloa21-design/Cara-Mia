@@ -1,26 +1,57 @@
 const morphText = document.getElementById('morphText');
 const petalLayer = document.querySelector('.bubble-layer');
+const bouquetEl = document.querySelector('.bouquet');
+const imageEl = document.querySelector('.image-card');
 const messages = ['SALMA', 'CARA MIA'];
 let messageIndex = 0;
 let letterIndex = 0;
-let morphDirection = 1;
 let lastTime = 0;
+let isHolding = false;
+let holdStart = 0;
+const tick = 420; // ms between typing each letter (slower)
+const holdDuration = 1600; // pause when full name is displayed
+
+function setMediaForMessage(msg) {
+  if (!bouquetEl || !imageEl) return;
+  if (msg.includes('SALMA')) {
+    imageEl.classList.add('visible');
+    imageEl.classList.remove('hidden');
+    bouquetEl.classList.add('hidden');
+    bouquetEl.classList.remove('visible');
+  } else {
+    bouquetEl.classList.add('visible');
+    bouquetEl.classList.remove('hidden');
+    imageEl.classList.add('hidden');
+    imageEl.classList.remove('visible');
+  }
+}
 
 function animateText(timestamp) {
-  if (timestamp - lastTime > 240) {
+  if (!lastTime) lastTime = timestamp;
+
+  if (!isHolding && timestamp - lastTime > tick) {
     const current = messages[messageIndex];
-    const next = messages[(messageIndex + 1) % messages.length];
-    const letters = morphDirection > 0 ? current : next;
     letterIndex += 1;
-
-    if (letterIndex > letters.length) {
-      letterIndex = 0;
-      morphDirection *= -1;
-      messageIndex = (messageIndex + 1) % messages.length;
-    }
-
-    morphText.textContent = letters.slice(0, letterIndex);
+    morphText.textContent = current.slice(0, letterIndex);
     lastTime = timestamp;
+
+    if (letterIndex >= current.length) {
+      isHolding = true;
+      holdStart = timestamp;
+      setMediaForMessage(current);
+    }
+  }
+
+  if (isHolding) {
+    if (timestamp - holdStart > holdDuration) {
+      // move to next name
+      messageIndex = (messageIndex + 1) % messages.length;
+      letterIndex = 0;
+      isHolding = false;
+      lastTime = timestamp;
+      // ensure media updates for next message early
+      setMediaForMessage(messages[messageIndex]);
+    }
   }
 
   requestAnimationFrame(animateText);
