@@ -1,5 +1,8 @@
 const morphText = document.getElementById('morphText');
 const petalLayer = document.querySelector('.bubble-layer');
+if (morphText) {
+  morphText.textContent = '';
+}
 const bouquetEl = document.querySelector('.bouquet');
 const imageEl = document.querySelector('.image-card');
 const messages = ['CARA MIA', 'PUMPKIN', 'LOVE', 'PRINCESS', 'GORGEOUS'];
