@@ -2,7 +2,7 @@ const morphText = document.getElementById('morphText');
 const petalLayer = document.querySelector('.bubble-layer');
 const bouquetEl = document.querySelector('.bouquet');
 const imageEl = document.querySelector('.image-card');
-const messages = ['SALMA', 'CARA MIA'];
+const messages = ['CARA MIA', 'PUMPKIN', 'LOVE', 'PRINCESS', 'GORGEOUS'];
 let messageIndex = 0;
 let letterIndex = 0;
 let lastTime = 0;
@@ -13,16 +13,16 @@ const holdDuration = 1600; // pause when full name is displayed
 
 function setMediaForMessage(msg) {
   if (!bouquetEl || !imageEl) return;
-  if (msg.includes('SALMA')) {
-    imageEl.classList.add('visible');
-    imageEl.classList.remove('hidden');
-    bouquetEl.classList.add('hidden');
-    bouquetEl.classList.remove('visible');
-  } else {
+  if (msg === 'CARA MIA') {
     bouquetEl.classList.add('visible');
     bouquetEl.classList.remove('hidden');
     imageEl.classList.add('hidden');
     imageEl.classList.remove('visible');
+  } else {
+    imageEl.classList.add('visible');
+    imageEl.classList.remove('hidden');
+    bouquetEl.classList.add('hidden');
+    bouquetEl.classList.remove('visible');
   }
 }
 
